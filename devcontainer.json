@@ -1,0 +1,17 @@
+{
+  "name": "Android Kernel Builder",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": "git,repo,python3,openjdk-17-jdk,bc,bison,flex,libssl-dev,libncurses5-dev,libelf-dev,ccache"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.cpptools"]
+    }
+  },
+  "runArgs": ["--privileged", "--shm-size=4g"],
+  "postCreateCommand": "ccache -M 20G && echo 'export USE_CCACHE=1' >> ~/.bashrc"
+}
